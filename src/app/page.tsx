@@ -38,11 +38,11 @@ export default function Home() {
             <p className="text-lg">예상 범위를 무료로 파악할 수 있습니다.</p>
           </div>
 
-          <div className="flex gap-12 mt-16">
+          <div className="flex flex-col lg:flex-row gap-12 mt-16">
             <Image
               src="/images/profile.png"
               alt="김용진 평가사"
-              className="w-96 h-96 rounded-full"
+              className="w-96 h-96 rounded-full mx-auto"
               width={384}
               height={384}
             />
