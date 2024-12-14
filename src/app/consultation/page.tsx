@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useRef, RefObject } from "react";
 import { useForm } from "react-hook-form";
 
 interface ConsultationForm {
@@ -10,13 +10,19 @@ interface ConsultationForm {
   priceLevel: string;
   additionalInfo: string;
   name: string;
-  phone: string;
+  phone1: string;
+  phone2: string;
+  phone3: string;
   privacyAgreement: boolean;
 }
 
 export default function ConsultationPage() {
-  const { register, handleSubmit } = useForm<ConsultationForm>();
+  const { register, handleSubmit, watch } = useForm<ConsultationForm>();
   const [customTarget, setCustomTarget] = useState(false);
+  const [invalidFields, setInvalidFields] = useState<string[]>([]);
+  const phone1Ref = useRef<HTMLInputElement>(null);
+  const phone2Ref = useRef<HTMLInputElement>(null);
+  const phone3Ref = useRef<HTMLInputElement>(null);
 
   const evaluationTypes = [
     "시가참고",
@@ -34,34 +40,100 @@ export default function ConsultationPage() {
 
   const priceLevels = ["최대", "적정", "최소"];
 
-  const onSubmit = (data: ConsultationForm) => {
-    // 수집된 데이터를 보기 좋게 포맷팅
-    const formattedData = {
-      평가대상:
-        data.evaluationTarget.join(", ") +
-        (data.customTarget ? `, ${data.customTarget}` : ""),
-      소재지: data.location,
-      평가항목: data.evaluationType,
-      희망가격수준: data.priceLevel,
-      기타사항: data.additionalInfo || "없음",
-      "이름/회사명": data.name,
-      연락처: data.phone,
-      개인정보동의: data.privacyAgreement ? "동의" : "미동의",
-    };
+  const evaluationTargets = watch("evaluationTarget", []);
+  const customTargetValue = watch("customTarget");
 
-    console.log("======= 상담 신청 정보 =======");
-    Object.entries(formattedData).forEach(([key, value]) => {
-      console.log(`${key}: ${value}`);
-    });
-    console.log("===========================");
+  const validateEvaluationTargets = () => {
+    if (evaluationTargets.length > 0) return true;
+
+    if (customTarget && customTargetValue?.trim()) return true;
+
+    return false;
+  };
+
+  const onSubmit = handleSubmit(
+    (data: ConsultationForm) => {
+      const missingFields: string[] = [];
+
+      if (!validateEvaluationTargets()) {
+        missingFields.push("evaluationTarget");
+      }
+      if (!data.location) {
+        missingFields.push("location");
+      }
+      if (!data.evaluationType) {
+        missingFields.push("evaluationType");
+      }
+      if (!data.priceLevel) {
+        missingFields.push("priceLevel");
+      }
+      if (!data.name) {
+        missingFields.push("name");
+      }
+      if (!data.phone1 || !data.phone2 || !data.phone3) {
+        missingFields.push("phone");
+      }
+      if (!data.privacyAgreement) {
+        missingFields.push("privacyAgreement");
+      }
+
+      if (missingFields.length > 0) {
+        setInvalidFields(missingFields);
+        setTimeout(() => setInvalidFields([]), 1000);
+        return;
+      }
+
+      const formattedData = {
+        평가대상:
+          data.evaluationTarget.join(", ") +
+          (data.customTarget ? `, ${data.customTarget}` : ""),
+        소재지: data.location,
+        평가항목: data.evaluationType,
+        희망가격수준: data.priceLevel,
+        기타사항: data.additionalInfo || "없음",
+        "이름/회사명": data.name,
+        연락처: `${data.phone1}-${data.phone2}-${data.phone3}`,
+        개인정보동의: data.privacyAgreement ? "동의" : "미동의",
+      };
+
+      console.log("======= 상담 신청 정보 =======");
+      Object.entries(formattedData).forEach(([key, value]) => {
+        console.log(`${key}: ${value}`);
+      });
+      console.log("===========================");
+    },
+    (errors) => {
+      const missingFields = Object.keys(errors);
+      setInvalidFields(missingFields);
+      setTimeout(() => setInvalidFields([]), 1000);
+    }
+  );
+
+  const handlePhoneInput = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    maxLength: number,
+    nextRef?: RefObject<HTMLInputElement>
+  ) => {
+    const value = e.target.value.replace(/[^0-9]/g, "");
+    e.target.value = value;
+
+    if (value.length >= maxLength && nextRef?.current) {
+      nextRef.current.focus();
+    }
   };
 
   return (
     <div className="max-w-4xl mx-auto p-6 pt-24">
       <h1 className="text-3xl font-bold mb-8">하이테크 상담 신청</h1>
 
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-        <div>
+      <form onSubmit={onSubmit} className="space-y-6">
+        <div
+          className={`${
+            invalidFields.includes("evaluationTarget")
+              ? "animate-shake bg-red-50"
+              : ""
+          }`}
+        >
           <label className="block mb-2 font-semibold">평가대상 (필수)</label>
           <div className="space-y-2">
             {[
@@ -76,7 +148,11 @@ export default function ConsultationPage() {
               <div key={item} className="flex items-center">
                 <input
                   type="checkbox"
-                  {...register("evaluationTarget")}
+                  {...register("evaluationTarget", {
+                    required:
+                      evaluationTargets.length === 0 &&
+                      (!customTarget || !customTargetValue?.trim()),
+                  })}
                   value={item}
                   className="mr-2"
                 />
@@ -92,7 +168,13 @@ export default function ConsultationPage() {
               <label className="mr-2">직접입력</label>
               <input
                 type="text"
-                {...register("customTarget")}
+                {...register("customTarget", {
+                  required: customTarget && evaluationTargets.length === 0,
+                  validate: (value) => {
+                    if (!customTarget) return true;
+                    return !!value?.trim();
+                  },
+                })}
                 className="border p-2 rounded flex-1"
                 placeholder="평가대상을 입력해주세요"
                 disabled={!customTarget}
@@ -101,7 +183,11 @@ export default function ConsultationPage() {
           </div>
         </div>
 
-        <div>
+        <div
+          className={`${
+            invalidFields.includes("location") ? "animate-shake bg-red-50" : ""
+          }`}
+        >
           <label className="block mb-2 font-semibold">소재지 (필수)</label>
           <input
             type="text"
@@ -110,7 +196,13 @@ export default function ConsultationPage() {
           />
         </div>
 
-        <div>
+        <div
+          className={`${
+            invalidFields.includes("evaluationType")
+              ? "animate-shake bg-red-50"
+              : ""
+          }`}
+        >
           <label className="block mb-2 font-semibold">평가항목 (필수)</label>
           <select
             {...register("evaluationType", { required: true })}
@@ -125,9 +217,15 @@ export default function ConsultationPage() {
           </select>
         </div>
 
-        <div>
+        <div
+          className={`${
+            invalidFields.includes("priceLevel")
+              ? "animate-shake bg-red-50"
+              : ""
+          }`}
+        >
           <label className="block mb-2 font-semibold">
-            희망가��수준 (필수)
+            희망가격수준 (필수)
           </label>
           <select
             {...register("priceLevel", { required: true })}
@@ -150,7 +248,11 @@ export default function ConsultationPage() {
           />
         </div>
 
-        <div>
+        <div
+          className={`${
+            invalidFields.includes("name") ? "animate-shake bg-red-50" : ""
+          }`}
+        >
           <label className="block mb-2 font-semibold">
             이름 또는 회사명 (필수)
           </label>
@@ -161,20 +263,58 @@ export default function ConsultationPage() {
           />
         </div>
 
-        <div>
+        <div
+          className={`${
+            invalidFields.includes("phone") ? "animate-shake bg-red-50" : ""
+          }`}
+        >
           <label className="block mb-2 font-semibold">연락처 (필수)</label>
-          <input
-            type="tel"
-            {...register("phone", {
-              required: true,
-              pattern: /^[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}$/,
-            })}
-            placeholder="010-0000-0000"
-            className="border p-2 rounded w-full"
-          />
+          <div className="flex items-center gap-2">
+            <input
+              type="text"
+              maxLength={3}
+              ref={phone1Ref}
+              {...register("phone1", {
+                required: true,
+                pattern: /^[0-9]{2,3}$/,
+              })}
+              onChange={(e) => handlePhoneInput(e, 3, phone2Ref)}
+              placeholder="010"
+              className="border p-2 rounded w-24 text-center"
+            />
+            <span>-</span>
+            <input
+              type="text"
+              maxLength={4}
+              ref={phone2Ref}
+              {...register("phone2", {
+                required: true,
+                pattern: /^[0-9]{3,4}$/,
+              })}
+              onChange={(e) => handlePhoneInput(e, 4, phone3Ref)}
+              placeholder="0000"
+              className="border p-2 rounded w-24 text-center"
+            />
+            <span>-</span>
+            <input
+              type="text"
+              maxLength={4}
+              ref={phone3Ref}
+              {...register("phone3", { required: true, pattern: /^[0-9]{4}$/ })}
+              onChange={(e) => handlePhoneInput(e, 4)}
+              placeholder="0000"
+              className="border p-2 rounded w-24 text-center"
+            />
+          </div>
         </div>
 
-        <div>
+        <div
+          className={`${
+            invalidFields.includes("privacyAgreement")
+              ? "animate-shake bg-red-50"
+              : ""
+          }`}
+        >
           <label className="block mb-2 font-semibold">
             개인정보 수집 및 이용 동의 (필수)
           </label>
