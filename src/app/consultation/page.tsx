@@ -52,7 +52,7 @@ export default function ConsultationPage() {
   };
 
   const onSubmit = handleSubmit(
-    (data: ConsultationForm) => {
+    async (data: ConsultationForm) => {
       const missingFields: string[] = [];
 
       if (!validateEvaluationTargets()) {
@@ -85,7 +85,9 @@ export default function ConsultationPage() {
 
       const formattedData = {
         평가대상:
-          data.evaluationTarget.join(", ") +
+          (Array.isArray(data.evaluationTarget)
+            ? data.evaluationTarget.join(", ")
+            : data.evaluationTarget || "") +
           (data.customTarget ? `, ${data.customTarget}` : ""),
         소재지: data.location,
         평가항목: data.evaluationType,
@@ -96,11 +98,32 @@ export default function ConsultationPage() {
         개인정보동의: data.privacyAgreement ? "동의" : "미동의",
       };
 
-      console.log("======= 상담 신청 정보 =======");
-      Object.entries(formattedData).forEach(([key, value]) => {
-        console.log(`${key}: ${value}`);
-      });
-      console.log("===========================");
+      try {
+        const response = await fetch("/api/send-email", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formattedData),
+        });
+
+        if (!response.ok) {
+          throw new Error("Failed to send email");
+        }
+
+        // 성공 메시지 표시
+        alert("상담 신청이 완료되었습니다.");
+
+        // 콘솔 로그는 유지
+        console.log("======= 상담 신청 정보 =======");
+        Object.entries(formattedData).forEach(([key, value]) => {
+          console.log(`${key}: ${value}`);
+        });
+        console.log("===========================");
+      } catch (error) {
+        console.error("Error sending email:", error);
+        alert("상담 신청 중 오류가 발생했습니다. ��시 시도해 주세요.");
+      }
     },
     (errors) => {
       const missingFields = Object.keys(errors);
@@ -273,12 +296,11 @@ export default function ConsultationPage() {
             <input
               type="text"
               maxLength={3}
-              ref={phone1Ref}
               {...register("phone1", {
                 required: true,
                 pattern: /^[0-9]{2,3}$/,
               })}
-              onChange={(e) => handlePhoneInput(e, 3, phone2Ref)}
+              onChange={(e) => handlePhoneInput(e, 3, phone1Ref)}
               placeholder="010"
               className="border p-2 rounded w-24 text-center"
             />
@@ -286,12 +308,11 @@ export default function ConsultationPage() {
             <input
               type="text"
               maxLength={4}
-              ref={phone2Ref}
               {...register("phone2", {
                 required: true,
                 pattern: /^[0-9]{3,4}$/,
               })}
-              onChange={(e) => handlePhoneInput(e, 4, phone3Ref)}
+              onChange={(e) => handlePhoneInput(e, 4, phone2Ref)}
               placeholder="0000"
               className="border p-2 rounded w-24 text-center"
             />
@@ -299,9 +320,8 @@ export default function ConsultationPage() {
             <input
               type="text"
               maxLength={4}
-              ref={phone3Ref}
               {...register("phone3", { required: true, pattern: /^[0-9]{4}$/ })}
-              onChange={(e) => handlePhoneInput(e, 4)}
+              onChange={(e) => handlePhoneInput(e, 4, phone3Ref)}
               placeholder="0000"
               className="border p-2 rounded w-24 text-center"
             />
