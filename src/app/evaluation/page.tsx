@@ -85,7 +85,7 @@ export default function ConsultationPage() {
       }
 
       const formattedData = {
-        신청유형: "무료 상담",
+        신청유형: "정식 평가",
         평가대상:
           (Array.isArray(data.evaluationTarget)
             ? data.evaluationTarget.join(", ")
@@ -149,7 +149,7 @@ export default function ConsultationPage() {
 
   return (
     <div className="max-w-4xl mx-auto p-6 pt-24">
-      <h1 className="text-3xl font-bold mb-8">하이테크 무료 상담</h1>
+      <h1 className="text-3xl font-bold mb-8">하이테크 정식 평가</h1>
 
       <form onSubmit={onSubmit} className="space-y-6">
         <div
