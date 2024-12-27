@@ -1,6 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // 여기에 설정을 넣으세요
+  // 이미지 최적화 설정
+  images: {
+    domains: [],
+  },
 };
 
 export default nextConfig;
