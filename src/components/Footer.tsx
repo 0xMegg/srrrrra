@@ -37,7 +37,7 @@ export default function Footer() {
                   href="mailto:hightechapp@naver.com"
                   className="hover:text-gray-900"
                 >
-                  hightechapp@naver.com
+                  hightechapp@naver.com high_srrra@daum.net
                 </a>
               </p>
             </div>

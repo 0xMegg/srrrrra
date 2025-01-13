@@ -30,21 +30,6 @@ export default function Sticky() {
           <span className="font-bold">하이테크 블로그</span>
           <Image src="/images/blog.png" alt="naver" width={50} height={50} />
         </a>
-
-        <a
-          href="https://www.instagram.com/hightech_app"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex flex-col items-center justify-center w-32 h-32 bg-[#FF9999] text-white rounded-lg shadow-lg hover:bg-[#FF8080] transition-colors"
-        >
-          <span className="font-bold mb-2">하이테크 유튜브</span>
-          <Image
-            src="/images/youtube.png"
-            alt="youtube"
-            width={50}
-            height={50}
-          />
-        </a>
       </div>
     </div>
   );

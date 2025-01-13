@@ -20,8 +20,37 @@ export default function MessagePage() {
       return;
     }
 
-    // 여기에 제출 로직 추가
-    console.log("제출된 데이터:", formData);
+    try {
+      const response = await fetch("/api/send-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          신청유형: "문자상담",
+          이름: formData.name,
+          연락처: `${formData.phone1}-${formData.phone2}-${formData.phone3}`,
+          상담내용: formData.content,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("메일 전송에 실패했습니다.");
+      }
+
+      alert("상담 신청이 완료되었습니다.");
+      setFormData({
+        name: "",
+        phone1: "",
+        phone2: "",
+        phone3: "",
+        content: "",
+        agreement: false,
+      });
+    } catch (error) {
+      console.error("Error:", error);
+      alert("상담 신청 중 오류가 발생했습니다. 다시 시도해주세요.");
+    }
   };
 
   return (

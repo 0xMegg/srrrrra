@@ -79,10 +79,12 @@ export default function Home() {
               />
 
               <div className="text-left">
-                <h2 className="text-xl font-bold mb-8">김용진 평가사 약력</h2>
+                <h2 className="text-xl font-bold mb-8">
+                  이돈호 대표변호사 약력
+                </h2>
                 <ul className="text-lg space-y-2">
-                  <li>a. 감정 평가사 (국토 교통부 인증)</li>
-                  <li>b. 기업 기술 가치 평가사 (한국 기업평가원 인증)</li>
+                  <li>a. 23년 하반기/24년 상반기 형사 특정변호사 선정</li>
+                  <li>b. 형사사건 및 손해배상 사건 상담 1000건 이상</li>
                   <li>c. 국가 연구 지원 전문가 (산업통상부 인증)</li>
                   <li>d. 현 고양세무사회 고문 감정평가사</li>
                   <li>e. 현 부산세무사회 고문 감정평가사</li>
