@@ -52,6 +52,7 @@ export default function Home() {
               />
 
               <div className="text-left">
+                <h2>하이테크 대표 평가사</h2>
                 <h2 className="text-xl font-bold mb-8">김용진 평가사 약력</h2>
                 <ul className="text-lg space-y-2">
                   <li>a. 감정 평가사 (국토 교통부 인증)</li>
@@ -72,29 +73,29 @@ export default function Home() {
             <div className="flex flex-col lg:flex-row gap-12 mt-16">
               <Image
                 src="/images/profile02.jpeg"
-                alt="김용진 평가사"
-                className="w-96 h-96 rounded-full mx-auto"
-                width={384}
-                height={384}
+                alt="이돈호 대표변호사"
+                className="w-72 h-72 rounded-full mx-auto opacity-90"
+                width={288}
+                height={288}
               />
 
               <div className="text-left">
-                <h2 className="text-xl font-bold mb-8">
+                <h3>업무협약</h3>
+                <h2 className="text-lg font-bold mb-4 text-gray-700">
                   이돈호 대표변호사 약력
                 </h2>
-                <ul className="text-lg space-y-2">
-                  <li>a. 23년 하반기/24년 상반기 형사 특정변호사 선정</li>
-                  <li>b. 형사사건 및 손해배상 사건 상담 1000건 이상</li>
-                  <li>c. 국가 연구 지원 전문가 (산업통상부 인증)</li>
-                  <li>d. 현 고양세무사회 고문 감정평가사</li>
-                  <li>e. 현 부산세무사회 고문 감정평가사</li>
-                  <li>f. 현 개업세무사회 고문 감정평가사</li>
-                  <li>g. 현 특허법인누리 고문 감정평가사</li>
-                  <li>h. 현 회계법인창천 고문 감정평가사</li>
-                  <li>i. 현 건국대학교 부동산 아카데미 고문 감정평가사</li>
-                  <li>j. 현 대한 가맹거래사 협회 고문 감정평가사</li>
-                  <li>k. 현 하이테크 감정 평가 법인 대표이사</li>
-                  <li>l. 현 하이테크 책임 컨설팅 대표이사</li>
+                <ul className="text-base space-y-1.5 text-gray-600">
+                  <li className="font-bold">
+                    • 23년 하반기/24년 상반기 형사 특정변호사 선정
+                  </li>
+                  <li className="font-bold">
+                    • 형사사건 및 손해배상 사건 상담 1000건 이상
+                  </li>
+                  <li>• 現 노바법률사무소 대표변호사</li>
+                  <li>• 現 대법원 국선변호인</li>
+                  <li>• 102만 유튜버 효기심 자문변호사</li>
+                  <li>• 89만 유튜버 1분과학 자문변호사</li>
+                  <li>• 83만 유튜버 흑자헬스 자문변호사</li>
                 </ul>
               </div>
             </div>
