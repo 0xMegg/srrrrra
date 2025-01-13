@@ -59,7 +59,7 @@ export default function Footer() {
                 네이버 블로그
               </a>
               <a
-                href="https://www.youtube.com/channel/UCSAzxNNKAcuVJa1cBzoE2Tg"
+                href="https://www.youtube.com/@spas_hightech"
                 target="_blank"
                 className="text-gray-600 hover:text-gray-900"
               >
