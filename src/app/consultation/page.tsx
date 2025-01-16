@@ -352,14 +352,15 @@ export default function ConsultationPage() {
           <div className="border p-4 mb-2 h-32 overflow-y-auto">
             <PrivacyPolicy />
           </div>
-          <div className="flex items-center">
+          <label className="flex items-center w-full cursor-pointer hover:bg-gray-50 p-2 rounded transition-colors">
             <input
               type="checkbox"
               {...register("privacyAgreement", { required: true })}
               className="mr-2"
+              id="privacyAgreement"
             />
-            <label>동의합니다</label>
-          </div>
+            <span>동의합니다</span>
+          </label>
         </div>
 
         <button
