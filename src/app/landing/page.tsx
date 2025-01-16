@@ -12,6 +12,13 @@ export default function LandingPage() {
     }
   }, []);
 
+  const handleScroll = () => {
+    window.scrollTo({
+      top: window.innerHeight,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <main className="relative min-h-screen overflow-hidden">
       {/* 배경 비디오 */}
@@ -31,6 +38,14 @@ export default function LandingPage() {
         <div className="absolute top-0 left-0 w-full h-full bg-black/50 z-10"></div>
       </div>
 
+      {/* 스크롤 버튼 */}
+      <button
+        onClick={handleScroll}
+        className="fixed bottom-8 right-8 z-50 bg-white/20 hover:bg-white/30 text-white px-6 py-3 rounded-full backdrop-blur-sm transition-all duration-300 border border-white/30 font-medium"
+      >
+        하이테크 소개
+      </button>
+
       {/* 메인 콘텐츠 */}
       <div className="relative z-20">
         <Sticky />
@@ -38,11 +53,12 @@ export default function LandingPage() {
         <div className="h-screen flex items-center justify-center">
           <div className="text-white text-center">
             <Image
-              src="/images/logon.png"
+              src="/images/logo_w.png"
               alt="로고"
-              className="w-60 mx-auto mb-4"
-              width={240}
-              height={80}
+              className="w-[400px] mx-auto mb-4"
+              width={400}
+              height={133}
+              priority
             />
             <h1 className="text-2xl font-bold mb-2">
               (주)하이테크 감정 평가 법인

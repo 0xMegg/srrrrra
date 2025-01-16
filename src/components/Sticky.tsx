@@ -11,7 +11,7 @@ export default function Sticky() {
           <span className="text-sm font-bold">02-6401-0706</span>
         </div>
 
-        <a
+        {/* <a
           href="https://open.kakao.com/your-link"
           target="_blank"
           rel="noopener noreferrer"
@@ -19,9 +19,9 @@ export default function Sticky() {
         >
           <span className="text-sm mb-2 font-bold">카카오톡 상담하기</span>
           <Image src="/images/kakao.png" alt="kakao" width={50} height={50} />
-        </a>
+        </a> */}
 
-        <a
+        {/* <a
           href="https://blog.naver.com/hightech_app"
           target="_blank"
           rel="noopener noreferrer"
@@ -29,7 +29,7 @@ export default function Sticky() {
         >
           <span className="font-bold">하이테크 블로그</span>
           <Image src="/images/blog.png" alt="naver" width={50} height={50} />
-        </a>
+        </a> */}
       </div>
     </div>
   );
