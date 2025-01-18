@@ -111,18 +111,21 @@ export default function Navbar() {
               <Link
                 href="/consultation"
                 className="text-gray-600 px-4 py-3 rounded-lg text-sm font-medium hover:bg-blue-50 hover:text-blue-600 transition-all"
+                onClick={() => setIsMenuOpen(false)}
               >
                 무료 상담 신청
               </Link>
               <Link
                 href="/message"
                 className="text-gray-600 px-4 py-3 rounded-lg text-sm font-medium hover:bg-blue-50 hover:text-blue-600 transition-all"
+                onClick={() => setIsMenuOpen(false)}
               >
                 문자 상담 신청
               </Link>
               <Link
                 href="/evaluation"
                 className="text-gray-600 px-4 py-3 rounded-lg text-sm font-medium hover:bg-blue-50 hover:text-blue-600 transition-all"
+                onClick={() => setIsMenuOpen(false)}
               >
                 정식 평가 신청
               </Link>

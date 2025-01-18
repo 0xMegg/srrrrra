@@ -1,15 +1,23 @@
 "use client";
 import Image from "next/image";
 import Sticky from "@/components/Sticky";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function LandingPage() {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [showScrollButton, setShowScrollButton] = useState(true);
 
   useEffect(() => {
     if (videoRef.current) {
       videoRef.current.playbackRate = 0.3;
     }
+
+    const handleScrollVisibility = () => {
+      setShowScrollButton(window.scrollY < 100);
+    };
+
+    window.addEventListener("scroll", handleScrollVisibility);
+    return () => window.removeEventListener("scroll", handleScrollVisibility);
   }, []);
 
   const handleScroll = () => {
@@ -39,31 +47,33 @@ export default function LandingPage() {
       </div>
 
       {/* 스크롤 버튼 */}
-      <button
-        onClick={handleScroll}
-        className="fixed left-1/2 bottom-8 -translate-x-1/2 z-50 text-white animate-pulse"
-        aria-label="스크롤 다운"
-      >
-        <div className="flex flex-col items-center gap-2 opacity-70">
-          <div className="w-1 h-1 rounded-full bg-white"></div>
-          <div className="w-1 h-1 rounded-full bg-white"></div>
-          <div className="w-1 h-1 rounded-full bg-white mb-2"></div>
-        </div>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-12 w-12 opacity-70 hover:opacity-100 transition-opacity"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
+      {showScrollButton && (
+        <button
+          onClick={handleScroll}
+          className="fixed left-1/2 bottom-8 -translate-x-1/2 z-50 text-white animate-pulse"
+          aria-label="스크롤 다운"
         >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M19 14l-7 7m0 0l-7-7m7 7V3"
-          />
-        </svg>
-      </button>
+          <div className="flex flex-col items-center gap-2 opacity-70">
+            <div className="w-1 h-1 rounded-full bg-white"></div>
+            <div className="w-1 h-1 rounded-full bg-white"></div>
+            <div className="w-1 h-1 rounded-full bg-white mb-2"></div>
+          </div>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-12 w-12 opacity-70 hover:opacity-100 transition-opacity"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M19 14l-7 7m0 0l-7-7m7 7V3"
+            />
+          </svg>
+        </button>
+      )}
 
       {/* 메인 콘텐츠 */}
       <div className="relative z-20">
