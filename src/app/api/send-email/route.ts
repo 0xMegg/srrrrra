@@ -17,7 +17,9 @@ export async function POST(request: Request) {
 
     const mailOptions = {
       from: process.env.EMAIL_USER,
-      to: process.env.RECIPIENT_EMAIL,
+      to: [process.env.RECIPIENT_EMAIL, process.env.RECIPIENT_EMAIL_2].join(
+        ", "
+      ),
       subject: `[하이테크] ${data.신청유형} 신청`,
       text: Object.entries(data)
         .map(([key, value]) => `${key}: ${value}`)
