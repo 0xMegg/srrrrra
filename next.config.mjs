@@ -1,8 +1,17 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // 이미지 최적화 설정
+  output: "export",
   images: {
-    domains: [],
+    unoptimized: true,
+  },
+  // 사이트맵 설정 추가
+  async rewrites() {
+    return [
+      {
+        source: "/sitemap.xml",
+        destination: "/public/sitemap.xml",
+      },
+    ];
   },
 };
 
