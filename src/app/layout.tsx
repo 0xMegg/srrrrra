@@ -12,7 +12,9 @@ export const metadata: Metadata = {
   title: "하이테크 감정 평가 법인",
   description: "국세청 제출용 양도·상속·증여 평가 국내 최다 경력",
   verification: {
-    google-site-verification: 'googleeed1a0173f5942d4',
+    other: {
+      'google-site-verification': 'googleeed1a0173f5942d4'
+    }
   },
 };
 
