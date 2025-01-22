@@ -11,6 +11,9 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "하이테크 감정 평가 법인",
   description: "국세청 제출용 양도·상속·증여 평가 국내 최다 경력",
+  verification: {
+    google: "googleeed1a0173f5942d4",
+  },
 };
 
 export default function RootLayout({
@@ -20,9 +23,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <head>
-        <meta name="google-site-verification" content="googleeed1a0173f5942d4" />
-      </head>
       <body
         className={`${inter.className} relative min-h-screen flex flex-col`}
       >
