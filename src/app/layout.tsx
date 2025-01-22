@@ -20,6 +20,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
+      <head>
+        <meta
+          name="google-site-verification"
+          content="1cqk-2_XW1x9dPDkb8iLkciuhgmdiRkYMUJOd5wdH3g"
+        />
+      </head>
       <body
         className={`${inter.className} relative min-h-screen flex flex-col`}
       >
