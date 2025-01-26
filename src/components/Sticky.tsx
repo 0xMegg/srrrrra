@@ -42,7 +42,19 @@ export default function Sticky() {
 
                 {/* 하단 전화번호 섹션 */}
                 <div className="flex flex-col items-center gap-1.5">
-                  <span className="text-base font-medium">0507-1362-5983</span>
+                  <div className="flex flex-col items-end gap-0.5">
+                    <div className="flex items-center gap-1">
+                      <span className="text-base">0507</span>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <span className="text-base text-white/70">-</span>
+                      <span className="text-base">1362</span>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <span className="text-base text-white/70">-</span>
+                      <span className="text-base">5983</span>
+                    </div>
+                  </div>
                 </div>
               </div>
 
