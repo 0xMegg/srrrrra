@@ -93,26 +93,26 @@ export default function Navbar() {
 
       {/* 모바일 메뉴 */}
       {isMenuOpen && (
-        <div className="absolute top-16 left-0 right-0 bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-lg md:hidden">
-          <div className="max-w-7xl mx-auto px-4 py-3">
+        <div className="absolute top-16 right-0 w-30 bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-lg md:hidden rounded-bl-lg">
+          <div className="px-2 py-3">
             <div className="flex flex-col space-y-2">
               <Link
                 href="/consultation"
-                className="text-gray-600 px-4 py-3 rounded-lg text-sm font-medium hover:bg-blue-50 hover:text-blue-600 transition-all"
+                className="text-gray-600 px-4 py-3 rounded-lg text-sm font-medium hover:bg-blue-50 hover:text-blue-600 transition-all text-right"
                 onClick={() => setIsMenuOpen(false)}
               >
                 무료 상담 신청
               </Link>
               <Link
                 href="/message"
-                className="text-gray-600 px-4 py-3 rounded-lg text-sm font-medium hover:bg-blue-50 hover:text-blue-600 transition-all"
+                className="text-gray-600 px-4 py-3 rounded-lg text-sm font-medium hover:bg-blue-50 hover:text-blue-600 transition-all text-right"
                 onClick={() => setIsMenuOpen(false)}
               >
                 문자 상담 신청
               </Link>
               <Link
                 href="/evaluation"
-                className="text-gray-600 px-4 py-3 rounded-lg text-sm font-medium hover:bg-blue-50 hover:text-blue-600 transition-all"
+                className="text-gray-600 px-4 py-3 rounded-lg text-sm font-medium hover:bg-blue-50 hover:text-blue-600 transition-all text-right"
                 onClick={() => setIsMenuOpen(false)}
               >
                 정식 평가 신청
