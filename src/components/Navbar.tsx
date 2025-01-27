@@ -9,6 +9,7 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
   const isLandingPage = pathname === "/";
+  const isDevPage = pathname === "/dev";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -20,7 +21,7 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const isTransparent = !isScrolled && isLandingPage;
+  const isTransparent = !isScrolled && (isLandingPage || isDevPage);
 
   return (
     <nav
@@ -79,26 +80,30 @@ export default function Navbar() {
 
           {/* 모바일 햄버거 버튼 */}
           <button
-            className={`md:hidden p-2 rounded-lg transition-colors ${
+            className={`md:hidden px-4 py-2 rounded-lg transition-colors ${
               isTransparent
                 ? "text-white hover:bg-white/10"
-                : "text-gray-600 hover:bg-gray-100"
+                : "text-gray-600 hover:bg-blue-50 hover:text-blue-600"
             }`}
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            </svg>
+            {isDevPage ? (
+              <span className="text-sm font-medium">상담 신청</span>
+            ) : (
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+            )}
           </button>
         </div>
       </div>
