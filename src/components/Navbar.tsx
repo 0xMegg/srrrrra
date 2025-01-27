@@ -9,7 +9,6 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
   const isLandingPage = pathname === "/";
-  const isDevPage = pathname === "/dev";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,7 +20,7 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const isTransparent = !isScrolled && (isLandingPage || isDevPage);
+  const isTransparent = !isScrolled && isLandingPage;
 
   return (
     <nav
@@ -87,23 +86,7 @@ export default function Navbar() {
             }`}
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
-            {isDevPage ? (
-              <span className="text-sm font-medium">무료 상담 신청</span>
-            ) : (
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              </svg>
-            )}
+            <span className="text-sm font-medium">무료 상담 신청</span>
           </button>
         </div>
       </div>
