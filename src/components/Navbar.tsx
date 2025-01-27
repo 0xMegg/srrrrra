@@ -88,7 +88,7 @@ export default function Navbar() {
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             {isDevPage ? (
-              <span className="text-sm font-medium">상담 신청</span>
+              <span className="text-sm font-medium">무료 상담 신청</span>
             ) : (
               <svg
                 className="w-6 h-6"
