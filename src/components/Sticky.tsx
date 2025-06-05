@@ -41,8 +41,12 @@ export default function Sticky() {
                 </div>
 
                 {/* 하단 전화번호 섹션 */}
-                <div className="flex flex-col items-center gap-1.5">
-                  <span className="text-base font-medium">0507-1362-5983</span>
+                <div className="flex flex-col items-center gap-0">
+                  <span className='mt-2'>0507</span>
+                  <span className='-m-2.5'>-</span>
+                  <span className='my-0'>1362</span>
+                  <span className='-m-2.5'>-</span>
+                  <span className='my-0'>5983</span>
                 </div>
               </div>
 
