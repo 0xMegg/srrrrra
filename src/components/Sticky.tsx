@@ -2,6 +2,10 @@
 import Image from "next/image";
 
 export default function Sticky() {
+  const handlePhoneClick = () => {
+    window.location.href = "tel:0507-1362-5983";
+  };
+
   return (
     <div className="hidden lg:block fixed right-12 bottom-12 z-50">
       <div className="flex flex-col gap-4">
@@ -13,7 +17,10 @@ export default function Sticky() {
           <div className="absolute inset-0 rounded-[38px] bg-gradient-to-b from-white/30 to-white/10"></div>
 
           {/* 메인 스마트폰 프레임 */}
-          <div className="relative backdrop-blur-sm bg-white/10 hover:bg-white/20 text-white rounded-[30px] transition-all duration-300 border-[6px] border-black/80 shadow-[0_0_0_1px_rgba(255,255,255,0.15)]">
+          <div
+            className="relative backdrop-blur-sm bg-white/10 hover:bg-white/20 text-white rounded-[30px] transition-all duration-300 border-[6px] border-black/80 shadow-[0_0_0_1px_rgba(255,255,255,0.15)] cursor-pointer"
+            onClick={handlePhoneClick}
+          >
             <div className="flex flex-col items-center w-32 h-56 relative">
               {/* 스마트폰 상단 노치 */}
               <div className="absolute top-2.5 w-12 h-2 bg-black rounded-xl"></div>
@@ -42,11 +49,11 @@ export default function Sticky() {
 
                 {/* 하단 전화번호 섹션 */}
                 <div className="flex flex-col items-center gap-0">
-                  <span className='mt-2'>0507</span>
-                  <span className='-m-2.5'>-</span>
-                  <span className='my-0'>1362</span>
-                  <span className='-m-2.5'>-</span>
-                  <span className='my-0'>5983</span>
+                  <span className="mt-2">0507</span>
+                  <span className="-m-2.5">-</span>
+                  <span className="my-0">1362</span>
+                  <span className="-m-2.5">-</span>
+                  <span className="my-0">5983</span>
                 </div>
               </div>
 
