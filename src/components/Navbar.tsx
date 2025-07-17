@@ -8,7 +8,7 @@ export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
-  const isLandingPage = pathname === "/";
+  const isLandingPage = pathname === "/" || pathname === "/test";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,21 +24,21 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 w-full z-50 transition-all duration-300 ${
+      className={`fixed w-full z-50 transition-all duration-300 ${
         isTransparent
           ? "bg-transparent"
           : "backdrop-blur-md bg-white/80 border-b border-gray-200"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* 로고 */}
           <Link href="/" className="flex items-center">
             <Image
               src={isTransparent ? "/images/logo_w.png" : "/images/logo.png"}
               alt="로고"
-              width={120}
-              height={40}
+              width={150}
+              height={50}
               className="hover:opacity-80 transition-opacity"
             />
           </Link>
@@ -47,7 +47,7 @@ export default function Navbar() {
           <div className="hidden md:flex items-center space-x-8">
             <Link
               href="/consultation"
-              className={`px-3 py-2 rounded-lg text-sm font-medium transition-all ${
+              className={`px-3 py-2 rounded-lg font-medium transition-all ${
                 isTransparent
                   ? "text-white hover:bg-white/10"
                   : "text-gray-600 hover:bg-blue-50 hover:text-blue-600"
@@ -57,7 +57,7 @@ export default function Navbar() {
             </Link>
             <Link
               href="/message"
-              className={`px-3 py-2 rounded-lg text-sm font-medium transition-all ${
+              className={`px-3 py-2 rounded-lg font-medium transition-all ${
                 isTransparent
                   ? "text-white hover:bg-white/10"
                   : "text-gray-600 hover:bg-blue-50 hover:text-blue-600"
@@ -67,7 +67,7 @@ export default function Navbar() {
             </Link>
             <Link
               href="/evaluation"
-              className={`px-3 py-2 rounded-lg text-sm font-medium transition-all ${
+              className={`px-3 py-2 rounded-lg font-medium transition-all ${
                 isTransparent
                   ? "text-white hover:bg-white/10"
                   : "text-gray-600 hover:bg-blue-50 hover:text-blue-600"

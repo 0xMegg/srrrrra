@@ -2,6 +2,7 @@
 import Image from "next/image";
 import Sticky from "@/components/Sticky";
 import { useEffect, useRef, useState } from "react";
+import { ChevronsDown } from "lucide-react";
 
 export default function LandingPage() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -30,20 +31,20 @@ export default function LandingPage() {
   return (
     <main className="relative min-h-screen overflow-hidden">
       {/* 배경 비디오 */}
-      <div className="absolute top-0 left-0 w-full h-screen z-0">
+      <div className="absolute w-full h-screen z-0">
         <video
           ref={videoRef}
           autoPlay
           loop
           muted
           playsInline
-          className="absolute top-0 left-0 w-full h-full object-cover"
+          className="absolute w-full h-full object-cover"
           style={{ minHeight: "100vh" }}
         >
           <source src="/videos/cut.mp4" type="video/mp4" />
         </video>
         {/* 오버레이 */}
-        <div className="absolute top-0 left-0 w-full h-full bg-black/50 z-10"></div>
+        <div className="absolute w-full h-full bg-black/50 z-10"></div>
       </div>
 
       {/* 스크롤 버튼 */}
@@ -53,25 +54,7 @@ export default function LandingPage() {
           className="fixed left-1/2 bottom-8 -translate-x-1/2 z-50 text-white animate-pulse"
           aria-label="스크롤 다운"
         >
-          <div className="flex flex-col items-center gap-2 opacity-70">
-            <div className="w-1 h-1 rounded-full bg-white"></div>
-            <div className="w-1 h-1 rounded-full bg-white"></div>
-            <div className="w-1 h-1 rounded-full bg-white mb-2"></div>
-          </div>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-12 w-12 opacity-70 hover:opacity-100 transition-opacity"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M19 14l-7 7m0 0l-7-7m7 7V3"
-            />
-          </svg>
+          <ChevronsDown className="w-12 h-12" />
         </button>
       )}
 
