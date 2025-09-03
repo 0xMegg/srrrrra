@@ -13,6 +13,16 @@ export async function POST(request: Request) {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS,
       },
+      pool: true,
+      maxConnections: 1,
+      maxMessages: 1,
+      rateDelta: 1000,
+      rateLimit: 1,
+      connectionTimeout: 5000,
+      greetingTimeout: 5000,
+      socketTimeout: 5000,
+      logger: false,
+      debug: false,
     });
 
     const mailOptions = {

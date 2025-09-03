@@ -30,6 +30,10 @@ export default function ConsultationForm({
   const { register, handleSubmit, watch } = useForm<ConsultationFormData>();
   const [customTarget, setCustomTarget] = useState(false);
   const [invalidFields, setInvalidFields] = useState<string[]>([]);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStep, setSubmitStep] = useState<
+    "idle" | "validating" | "sending" | "success" | "error"
+  >("idle");
   const phone1Ref = useRef<HTMLInputElement>(null);
   const phone2Ref = useRef<HTMLInputElement>(null);
   const phone3Ref = useRef<HTMLInputElement>(null);
@@ -63,6 +67,9 @@ export default function ConsultationForm({
 
   const onSubmit = handleSubmit(
     async (data: ConsultationFormData) => {
+      setIsSubmitting(true);
+      setSubmitStep("validating");
+
       const missingFields: string[] = [];
 
       if (!validateEvaluationTargets()) {
@@ -93,8 +100,12 @@ export default function ConsultationForm({
       if (missingFields.length > 0) {
         setInvalidFields(missingFields);
         setTimeout(() => setInvalidFields([]), 1000);
+        setIsSubmitting(false);
+        setSubmitStep("idle");
         return;
       }
+
+      setSubmitStep("sending");
 
       const formattedData: any = {
         신청유형: type,
@@ -156,6 +167,8 @@ export default function ConsultationForm({
           throw new Error("Failed to send email");
         }
 
+        setSubmitStep("success");
+
         // 성공 메시지 표시
         alert("상담 신청이 완료되었습니다.");
 
@@ -165,15 +178,30 @@ export default function ConsultationForm({
           console.log(`${key}: ${value}`);
         });
         console.log("===========================");
+
+        // 3초 후 초기 상태로 복귀
+        setTimeout(() => {
+          setIsSubmitting(false);
+          setSubmitStep("idle");
+        }, 3000);
       } catch (error) {
         console.error("Error sending email:", error);
+        setSubmitStep("error");
         alert("상담 신청 중 오류가 발생했습니다. 다시 시도해 주세요.");
+
+        // 3초 후 초기 상태로 복귀
+        setTimeout(() => {
+          setIsSubmitting(false);
+          setSubmitStep("idle");
+        }, 3000);
       }
     },
     (errors) => {
       const missingFields = Object.keys(errors);
       setInvalidFields(missingFields);
       setTimeout(() => setInvalidFields([]), 1000);
+      setIsSubmitting(false);
+      setSubmitStep("idle");
     }
   );
 
@@ -429,10 +457,88 @@ export default function ConsultationForm({
 
         <button
           type="submit"
-          className="w-full bg-blue-600 text-white py-3 rounded hover:bg-blue-700"
+          disabled={isSubmitting}
+          className={`w-full py-3 rounded transition-all duration-200 ${
+            isSubmitting
+              ? "bg-gray-400 cursor-not-allowed"
+              : "bg-blue-600 hover:bg-blue-700 text-white"
+          }`}
         >
-          상담 신청하기
+          {submitStep === "idle" && "상담 신청하기"}
+          {submitStep === "validating" && (
+            <div className="flex items-center justify-center space-x-2">
+              <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+              <span>폼 검증 중...</span>
+            </div>
+          )}
+          {submitStep === "sending" && (
+            <div className="flex items-center justify-center space-x-2">
+              <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+              <span>메일 전송 중...</span>
+            </div>
+          )}
+          {submitStep === "success" && (
+            <div className="flex items-center justify-center space-x-2">
+              <svg
+                className="w-5 h-5 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M5 13l4 4L19 7"
+                />
+              </svg>
+              <span>전송 완료!</span>
+            </div>
+          )}
+          {submitStep === "error" && (
+            <div className="flex items-center justify-center space-x-2">
+              <svg
+                className="w-5 h-5 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+              <span>오류 발생</span>
+            </div>
+          )}
         </button>
+
+        {/* 진행 상황 안내 메시지 */}
+        {isSubmitting && (
+          <div className="mt-4 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+            <div className="flex items-center space-x-3">
+              <div className="w-5 h-5 border-2 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+              <div>
+                <p className="text-blue-800 font-medium">
+                  {submitStep === "validating" &&
+                    "입력 정보를 확인하고 있습니다..."}
+                  {submitStep === "sending" &&
+                    "상담 신청 메일을 전송하고 있습니다..."}
+                  {submitStep === "success" &&
+                    "상담 신청이 성공적으로 완료되었습니다!"}
+                  {submitStep === "error" && "전송 중 오류가 발생했습니다."}
+                </p>
+                <p className="text-blue-600 text-sm mt-1">
+                  {submitStep === "sending" &&
+                    "잠시만 기다려주세요. 안전하게 전송되고 있습니다."}
+                  {submitStep === "success" && "곧 담당자가 연락드리겠습니다."}
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
       </form>
     </div>
   );
