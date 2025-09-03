@@ -29,7 +29,6 @@ export default function RootLayout({
           name="naver-site-verification"
           content="cdb5adc1fdea3cf69c2dc56cb8f2b6bb3af18e01"
         />
-        <link rel="icon" href="/favicon.ico" />
         <meta property="og:image" content="/images/logo.png" />
         <meta name="twitter:image" content="/images/logo.png" />
       </head>
