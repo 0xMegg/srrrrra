@@ -136,7 +136,6 @@ export default function LandingPage() {
                   </ul>
                 </div>
               </div>
-
             </div>
           </div>
         </div>
