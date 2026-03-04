@@ -153,36 +153,6 @@ export default function LandingPage() {
                   </ul>
                 </div>
               </div>
-
-              <div className="flex flex-col lg:flex-row items-center justify-center gap-16">
-                <Image
-                  src="/images/profile02.jpeg"
-                  alt="이돈호 대표변호사"
-                  className="w-72 h-72 rounded-full mx-auto flex-shrink-0"
-                  width={288}
-                  height={288}
-                />
-
-                <div className="text-left flex-grow lg:max-w-xl">
-                  <h3 className="text-lg mb-1">업무협약</h3>
-                  <h2 className="text-lg font-bold mb-4 text-gray-700">
-                    이돈호 대표변호사 약력
-                  </h2>
-                  <ul className="text-base space-y-1.5 text-gray-600">
-                    <li className="font-bold">
-                      • 23년 하반기/24년 상반기 형사 특정변호사 선정
-                    </li>
-                    <li className="font-bold">
-                      • 형사사건 및 손해배상 사건 상담 1000건 이상
-                    </li>
-                    <li>• 現 노바법률사무소 대표변호사</li>
-                    <li>• 現 대법원 국선변호인</li>
-                    <li>• 102만 유튜버 효기심 자문변호사</li>
-                    <li>• 89만 유튜버 1분과학 자문변호사</li>
-                    <li>• 83만 유튜버 흑자헬스 자문변호사</li>
-                  </ul>
-                </div>
-              </div>
             </div>
           </div>
         </div>
