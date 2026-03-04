@@ -8,8 +8,7 @@ export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
-  const isLandingPage = pathname === "/";
-  const isDevPage = pathname === "/dev";
+  const isLandingPage = pathname === "/" || pathname === "/test";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,25 +20,25 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const isTransparent = !isScrolled && (isLandingPage || isDevPage);
+  const isTransparent = !isScrolled && isLandingPage;
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 w-full z-50 transition-all duration-300 ${
+      className={`fixed w-full z-50 transition-all duration-300 ${
         isTransparent
           ? "bg-transparent"
           : "backdrop-blur-md bg-white/80 border-b border-gray-200"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* 로고 */}
           <Link href="/" className="flex items-center">
             <Image
               src={isTransparent ? "/images/logo_w.png" : "/images/logo.png"}
               alt="로고"
-              width={120}
-              height={40}
+              width={150}
+              height={50}
               className="hover:opacity-80 transition-opacity"
             />
           </Link>
@@ -48,7 +47,7 @@ export default function Navbar() {
           <div className="hidden md:flex items-center space-x-8">
             <Link
               href="/consultation"
-              className={`px-3 py-2 rounded-lg text-sm font-medium transition-all ${
+              className={`px-3 py-2 rounded-lg font-medium transition-all ${
                 isTransparent
                   ? "text-white hover:bg-white/10"
                   : "text-gray-600 hover:bg-blue-50 hover:text-blue-600"
@@ -58,7 +57,7 @@ export default function Navbar() {
             </Link>
             <Link
               href="/message"
-              className={`px-3 py-2 rounded-lg text-sm font-medium transition-all ${
+              className={`px-3 py-2 rounded-lg font-medium transition-all ${
                 isTransparent
                   ? "text-white hover:bg-white/10"
                   : "text-gray-600 hover:bg-blue-50 hover:text-blue-600"
@@ -68,7 +67,7 @@ export default function Navbar() {
             </Link>
             <Link
               href="/evaluation"
-              className={`px-3 py-2 rounded-lg text-sm font-medium transition-all ${
+              className={`px-3 py-2 rounded-lg font-medium transition-all ${
                 isTransparent
                   ? "text-white hover:bg-white/10"
                   : "text-gray-600 hover:bg-blue-50 hover:text-blue-600"
@@ -87,49 +86,33 @@ export default function Navbar() {
             }`}
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
-            {isDevPage ? (
-              <span className="text-sm font-medium">상담 신청</span>
-            ) : (
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              </svg>
-            )}
+            <span className="text-sm font-medium">무료 상담 신청</span>
           </button>
         </div>
       </div>
 
       {/* 모바일 메뉴 */}
       {isMenuOpen && (
-        <div className="absolute top-16 left-0 right-0 bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-lg md:hidden">
-          <div className="max-w-7xl mx-auto px-4 py-3">
+        <div className="absolute top-16 right-0 w-30 bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-lg md:hidden rounded-bl-lg">
+          <div className="px-2 py-3">
             <div className="flex flex-col space-y-2">
               <Link
                 href="/consultation"
-                className="text-gray-600 px-4 py-3 rounded-lg text-sm font-medium hover:bg-blue-50 hover:text-blue-600 transition-all"
+                className="text-gray-600 px-4 py-3 rounded-lg text-sm font-medium hover:bg-blue-50 hover:text-blue-600 transition-all text-right"
                 onClick={() => setIsMenuOpen(false)}
               >
                 무료 상담 신청
               </Link>
               <Link
                 href="/message"
-                className="text-gray-600 px-4 py-3 rounded-lg text-sm font-medium hover:bg-blue-50 hover:text-blue-600 transition-all"
+                className="text-gray-600 px-4 py-3 rounded-lg text-sm font-medium hover:bg-blue-50 hover:text-blue-600 transition-all text-right"
                 onClick={() => setIsMenuOpen(false)}
               >
                 문자 상담 신청
               </Link>
               <Link
                 href="/evaluation"
-                className="text-gray-600 px-4 py-3 rounded-lg text-sm font-medium hover:bg-blue-50 hover:text-blue-600 transition-all"
+                className="text-gray-600 px-4 py-3 rounded-lg text-sm font-medium hover:bg-blue-50 hover:text-blue-600 transition-all text-right"
                 onClick={() => setIsMenuOpen(false)}
               >
                 정식 평가 신청

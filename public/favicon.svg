@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 64 64" role="img" aria-label="H favicon">
+  <defs>
+    <style>
+      :root { color: #111827; } /* 어두운 색 */
+    </style>
+  </defs>
+
+  <!-- 라운드 사각형: 흰 배경 + H와 동일 색의 외곽선 -->
+  <rect x="2" y="2" width="60" height="60" rx="12" fill="#ffffff" stroke="currentColor" stroke-width="4"/>
+
+  <!-- H 글자 (폭 넓힘, 각진 형태) -->
+  <g fill="currentColor">
+    <!-- 왼쪽 기둥 -->
+    <rect x="15" y="12" width="12" height="40"/>
+    <!-- 오른쪽 기둥 -->
+    <rect x="37" y="12" width="12" height="40"/>
+    <!-- 가로 막대 -->
+    <rect x="15" y="28" width="34" height="8"/>
+  </g>
+</svg>

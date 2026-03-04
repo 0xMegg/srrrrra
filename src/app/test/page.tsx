@@ -3,6 +3,7 @@ import Image from "next/image";
 import Sticky from "@/components/Sticky";
 import { useEffect, useRef, useState } from "react";
 import { ChevronsDown } from "lucide-react";
+import { Separator } from "@/components/ui/separator";
 
 export default function LandingPage() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -88,56 +89,63 @@ export default function LandingPage() {
         </div>
 
         {/* 실제 콘텐츠 섹션 */}
-        <div className="bg-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-            <div className="flex flex-col gap-32">
-              <div className="text-center">
-                <h2 className="text-2xl font-bold mb-8">
-                  가평가(탁상 감정)란?
-                </h2>
-                <p className="text-lg">
-                  현장 조사 없이 탁상에서 감정하는 것을 뜻합니다.
-                </p>
-                <p className="text-lg">
-                  정식 감정 평가를 앞두고 대략적인 감정 평가액의
-                </p>
-                <p className="text-lg">
-                  예상 범위를 무료로 파악할 수 있습니다.
+        <div className="bg-white w-full h-screen flex flex-col">
+          {/* 김용진 소개 */}
+          <div className="flex items-center pt-[65px] justify-center">
+            {/* 이름 & 이미지 */}
+            <div className="flex flex-col gap-4 mx-10">
+              <p className="text-5xl font-bold">김용진 평가사</p>
+              <Image
+                src="/images/profile.png"
+                alt="김용진 평가사"
+                className="rounded-[100px] flex-shrink-0"
+                width={350}
+                height={350}
+              />
+            </div>
+            {/* 소개 */}
+            <div className="w-1/2 h-full flex flex-col gap-4 pt-[64px]">
+              <Separator className="bg-black " />
+              <div className="flex gap-4 items-center justify-center px-10">
+                <p className="w-1/2">⚫ 감정 평가사 (국토 교통부 인증)</p>
+                <p className="w-1/2">
+                  ⚫ 기업 기술 가치 평가사 (한국 기업평가원 인증)
                 </p>
               </div>
-
-              <div className="flex flex-col lg:flex-row items-center justify-center gap-16">
-                <Image
-                  src="/images/profile.png"
-                  alt="김용진 평가사"
-                  className="w-96 h-96 rounded-full mx-auto flex-shrink-0"
-                  width={384}
-                  height={384}
-                />
-
-                <div className="text-left flex-grow lg:max-w-xl">
-                  <h2 className="text-2xl font-bold mb-2">
-                    하이테크 대표 평가사
-                  </h2>
-                  <h2 className="text-xl font-bold mb-8">김용진 평가사 약력</h2>
-                  <ul className="text-lg space-y-2">
-                    <li>a. 감정 평가사 (국토 교통부 인증)</li>
-                    <li>b. 기업 기술 가치 평가사 (한국 기업평가원 인증)</li>
-                    <li>c. 국가 연구 지원 전문가 (산업통상부 인증)</li>
-                    <li>d. 현 고양세무사회 고문 감정평가사</li>
-                    <li>e. 현 부산세무사회 고문 감정평가사</li>
-                    <li>f. 현 개업세무사회 고문 감정평가사</li>
-                    <li>g. 현 특허법인누리 고문 감정평가사</li>
-                    <li>h. 현 회계법인창천 고문 감정평가사</li>
-                    <li>i. 현 건국대학교 부동산 아카데미 고문 감정평가사</li>
-                    <li>j. 현 대한 가맹거래사 협회 고문 감정평가사</li>
-                    <li>k. 현 하이테크 감정 평가 법인 대표이사</li>
-                    <li>l. 현 하이테크 책임 컨설팅 대표이사</li>
-                  </ul>
-                </div>
+              <Separator className="bg-black " />
+              <div className="flex gap-4 items-center justify-center px-10">
+                <p className="w-1/2">
+                  ⚫ 국가 연구 지원 전문가 (산업통상부 인증)
+                </p>
+                <p className="w-1/2">⚫ 현 고양세무사회 고문 감정평가사</p>
+              </div>
+              <Separator className="bg-black " />
+              <div className="flex gap-4 items-center justify-center px-10">
+                <p className="w-1/2">⚫ 현 부산세무사회 고문 감정평가사</p>
+                <p className="w-1/2">⚫ 현 개업세무사회 고문 감정평가사</p>
+              </div>
+              <Separator className="bg-black " />
+              <div className="flex gap-4 items-center justify-center px-10">
+                <p className="w-1/2">⚫ 현 특허법인누리 고문 감정평가사</p>
+                <p className="w-1/2">⚫ 현 회계법인창천 고문 감정평가사</p>
+              </div>
+              <Separator className="bg-black " />
+              <div className="flex gap-4 items-center justify-center px-10">
+                <p className="w-1/2">
+                  ⚫ 현 건국대학교 부동산 아카데미 고문 감정평가사
+                </p>
+                <p className="w-1/2">
+                  ⚫ 현 대한 가맹거래사 협회 고문 감정평가사
+                </p>
+              </div>
+              <Separator className="bg-black " />
+              <div className="flex gap-4 items-center justify-center px-10">
+                <p className="w-1/2">⚫ 현 하이테크 감정 평가 법인 대표이사</p>
+                <p className="w-1/2">⚫ 현 하이테크 책임 컨설팅 대표이사</p>
               </div>
             </div>
           </div>
+          <div></div>
         </div>
       </div>
     </main>

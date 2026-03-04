@@ -11,9 +11,6 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "하이테크 감정 평가 법인",
   description: "국세청 제출용 양도·상속·증여 평가 국내 최다 경력",
-  openGraph: {
-    images: "/images/logo.png",
-  },
 };
 
 export default function RootLayout({
@@ -32,6 +29,8 @@ export default function RootLayout({
           name="naver-site-verification"
           content="cdb5adc1fdea3cf69c2dc56cb8f2b6bb3af18e01"
         />
+        <meta property="og:image" content="/images/logo.png" />
+        <meta name="twitter:image" content="/images/logo.png" />
       </head>
       <body
         className={`${inter.className} relative min-h-screen flex flex-col`}

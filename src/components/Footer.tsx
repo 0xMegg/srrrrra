@@ -36,10 +36,10 @@ export default function Footer() {
             <p>
               이메일:{" "}
               <a
-                href="mailto:high_srrra@daum.net"
+                href="mailto:srrra@hightechmember.com"
                 className="hover:text-gray-900"
               >
-                high_srrra@daum.net
+                srrra@hightechmember.com
               </a>
             </p>
           </div>
