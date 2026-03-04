@@ -145,61 +145,6 @@ export default function LandingPage() {
               </div>
             </div>
           </div>
-          {/* 이돈호 소개 */}
-          <div className="flex justify-center items-center pt-[65px]">
-            {/* 이름 & 이미지 */}
-            <div>
-              <p className="text-4xl font-bold">이돈호 대표변호사</p>
-              <Image
-                src="/images/profile02.jpeg"
-                alt="이돈호 대표변호사"
-                className="w-72 h-72 rounded-[60px] mx-auto flex-shrink-0"
-                width={288}
-                height={288}
-              />
-            </div>
-            {/* 소개 */}
-            <div className="w-1/2 h-full flex flex-col gap-4">
-              <Separator className="bg-black " />
-              <div className="flex gap-4 items-center justify-center px-10">
-                <p className="w-1/2">⚫ 감정 평가사 (국토 교통부 인증)</p>
-                <p className="w-1/2">
-                  ⚫ 기업 기술 가치 평가사 (한국 기업평가원 인증)
-                </p>
-              </div>
-              <Separator className="bg-black " />
-              <div className="flex gap-4 items-center justify-center px-10">
-                <p className="w-1/2">
-                  ⚫ 국가 연구 지원 전문가 (산업통상부 인증)
-                </p>
-                <p className="w-1/2">⚫ 현 고양세무사회 고문 감정평가사</p>
-              </div>
-              <Separator className="bg-black " />
-              <div className="flex gap-4 items-center justify-center px-10">
-                <p className="w-1/2">⚫ 현 부산세무사회 고문 감정평가사</p>
-                <p className="w-1/2">⚫ 현 개업세무사회 고문 감정평가사</p>
-              </div>
-              <Separator className="bg-black " />
-              <div className="flex gap-4 items-center justify-center px-10">
-                <p className="w-1/2">⚫ 현 특허법인누리 고문 감정평가사</p>
-                <p className="w-1/2">⚫ 현 회계법인창천 고문 감정평가사</p>
-              </div>
-              <Separator className="bg-black " />
-              <div className="flex gap-4 items-center justify-center px-10">
-                <p className="w-1/2">
-                  ⚫ 현 건국대학교 부동산 아카데미 고문 감정평가사
-                </p>
-                <p className="w-1/2">
-                  ⚫ 현 대한 가맹거래사 협회 고문 감정평가사
-                </p>
-              </div>
-              <Separator className="bg-black " />
-              <div className="flex gap-4 items-center justify-center px-10">
-                <p className="w-1/2">⚫ 현 하이테크 감정 평가 법인 대표이사</p>
-                <p className="w-1/2">⚫ 현 하이테크 책임 컨설팅 대표이사</p>
-              </div>
-            </div>
-          </div>
           <div></div>
         </div>
       </div>
