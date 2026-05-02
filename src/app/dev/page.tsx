@@ -51,7 +51,7 @@ export default function DevPage() {
       {showScrollButton && (
         <button
           onClick={handleScroll}
-          className="fixed left-1/2 bottom-8 -translate-x-1/2 z-50 text-white animate-pulse"
+          className="fixed left-1/2 bottom-8 -translate-x-1/2 z-50 text-white animate-pulse focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-transparent rounded"
           aria-label="스크롤 다운"
         >
           <div className="flex flex-col items-center gap-2 opacity-70">

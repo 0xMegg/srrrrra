@@ -2,8 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+/* layout.tsx의 Inter가 body에 적용되므로 font-family 덮어쓰지 않음 */
 body {
   color: #171717;
   background: #ffffff;
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* 폼 입력 포커스/에러 스타일 — 접근성 및 시각적 피드백 */
+@layer components {
+  .input-ring {
+    @apply border border-gray-300 rounded p-2 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 focus:outline-none;
+  }
+  .input-ring-invalid {
+    @apply border-red-500;
+  }
 }

@@ -1,5 +1,6 @@
 "use client";
-import Image from "next/image";
+
+const TEL_NUMBER = "050713625983";
 
 export default function Sticky() {
   return (
@@ -12,8 +13,12 @@ export default function Sticky() {
           {/* 밝은색 아웃라인 */}
           <div className="absolute inset-0 rounded-[38px] bg-gradient-to-b from-white/30 to-white/10"></div>
 
-          {/* 메인 스마트폰 프레임 */}
-          <div className="relative backdrop-blur-sm bg-white/10 hover:bg-white/20 text-white rounded-[30px] transition-all duration-300 border-[6px] border-black/80 shadow-[0_0_0_1px_rgba(255,255,255,0.15)]">
+          {/* 메인 스마트폰 프레임 — 클릭 시 전화 연결, 키보드 포커스 가능 */}
+          <a
+            href={`tel:${TEL_NUMBER}`}
+            className="relative flex backdrop-blur-sm bg-white/10 hover:bg-white/20 text-white rounded-[30px] transition-all duration-300 border-[6px] border-black/80 shadow-[0_0_0_1px_rgba(255,255,255,0.15)] focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
+            aria-label="전화 상담 0507-1362-5983"
+          >
             <div className="flex flex-col items-center w-32 h-56 relative">
               {/* 스마트폰 상단 노치 */}
               <div className="absolute top-2.5 w-12 h-2 bg-black rounded-xl"></div>
@@ -40,17 +45,17 @@ export default function Sticky() {
                   </span>
                 </div>
 
-                {/* 하단 전화번호 섹션 */}
+                {/* 하단 전화번호 섹션 — 중앙 정렬 */}
                 <div className="flex flex-col items-center gap-1.5">
-                  <div className="flex flex-col items-end gap-0.5">
-                    <div className="flex items-center gap-1">
+                  <div className="flex flex-col items-center gap-0.5">
+                    <div className="flex items-center justify-center gap-1">
                       <span className="text-base">0507</span>
                     </div>
-                    <div className="flex items-center gap-1">
+                    <div className="flex items-center justify-center gap-1">
                       <span className="text-base text-white/70">-</span>
                       <span className="text-base">1362</span>
                     </div>
-                    <div className="flex items-center gap-1">
+                    <div className="flex items-center justify-center gap-1">
                       <span className="text-base text-white/70">-</span>
                       <span className="text-base">5983</span>
                     </div>
@@ -61,7 +66,7 @@ export default function Sticky() {
               {/* 스마트폰 하단 홈 버튼 */}
               <div className="absolute bottom-2.5 w-12 h-1 bg-white/40 rounded-full"></div>
             </div>
-          </div>
+          </a>
         </div>
       </div>
     </div>

@@ -1,0 +1,79 @@
+- generic [active] [ref=e1]:
+  - navigation [ref=e2]:
+    - generic [ref=e4]:
+      - link "로고" [ref=e5] [cursor=pointer]:
+        - /url: /
+        - img "로고" [ref=e6]
+      - generic [ref=e7]:
+        - link "무료 상담 신청" [ref=e8] [cursor=pointer]:
+          - /url: /consultation
+        - link "문자 상담 신청" [ref=e9] [cursor=pointer]:
+          - /url: /message
+        - link "정식 평가 신청" [ref=e10] [cursor=pointer]:
+          - /url: /evaluation
+  - main [ref=e11]:
+    - main [ref=e12]:
+      - button "스크롤 다운" [ref=e16] [cursor=pointer]:
+        - img [ref=e21]
+      - generic [ref=e23]:
+        - generic [ref=e32]:
+          - generic [ref=e33]:
+            - img [ref=e34]
+            - generic [ref=e36]: 전화 상담
+          - generic [ref=e38]:
+            - generic [ref=e40]: "0507"
+            - generic [ref=e41]:
+              - generic [ref=e42]: "-"
+              - generic [ref=e43]: "1362"
+            - generic [ref=e44]:
+              - generic [ref=e45]: "-"
+              - generic [ref=e46]: "5983"
+        - generic [ref=e49]:
+          - img "로고" [ref=e50]
+          - heading "(주)하이테크 감정 평가 법인" [level=1] [ref=e51]
+          - paragraph [ref=e52]: 국세청 제출용 양도·상속·증여 평가 국내 최다 경력
+          - paragraph [ref=e53]: 영업권·특허권·상표권 무형 자산 평가
+          - paragraph [ref=e54]: 서울 강남구 영동대로 511 트레이드 타워 13층
+        - generic [ref=e57]:
+          - generic [ref=e58]:
+            - heading "가평가(탁상 감정)란?" [level=2] [ref=e59]
+            - paragraph [ref=e60]: 현장 조사 없이 탁상에서 감정하는 것을 뜻합니다.
+            - paragraph [ref=e61]: 정식 감정 평가를 앞두고 대략적인 감정 평가액의
+            - paragraph [ref=e62]: 예상 범위를 무료로 파악할 수 있습니다.
+          - generic [ref=e63]:
+            - img "김용진 평가사" [ref=e64]
+            - generic [ref=e65]:
+              - heading "하이테크 대표 평가사" [level=2] [ref=e66]
+              - heading "김용진 평가사 약력" [level=2] [ref=e67]
+              - list [ref=e68]:
+                - listitem [ref=e69]: a. 감정 평가사 (국토 교통부 인증)
+                - listitem [ref=e70]: b. 기업 기술 가치 평가사 (한국 기업평가원 인증)
+                - listitem [ref=e71]: c. 국가 연구 지원 전문가 (산업통상부 인증)
+                - listitem [ref=e72]: d. 현 고양세무사회 고문 감정평가사
+                - listitem [ref=e73]: e. 현 부산세무사회 고문 감정평가사
+                - listitem [ref=e74]: f. 현 개업세무사회 고문 감정평가사
+                - listitem [ref=e75]: g. 현 특허법인누리 고문 감정평가사
+                - listitem [ref=e76]: h. 현 회계법인창천 고문 감정평가사
+                - listitem [ref=e77]: i. 현 건국대학교 부동산 아카데미 고문 감정평가사
+                - listitem [ref=e78]: j. 현 대한 가맹거래사 협회 고문 감정평가사
+                - listitem [ref=e79]: k. 현 하이테크 감정 평가 법인 대표이사
+                - listitem [ref=e80]: l. 현 하이테크 책임 컨설팅 대표이사
+  - contentinfo [ref=e81]:
+    - generic [ref=e83]:
+      - list [ref=e85]:
+        - listitem [ref=e86]:
+          - link "이용약관" [ref=e87] [cursor=pointer]:
+            - /url: /?mode=policy
+        - listitem [ref=e88]:
+          - link "개인정보처리방침" [ref=e89] [cursor=pointer]:
+            - /url: /?mode=privacy
+      - generic [ref=e90]:
+        - paragraph [ref=e91]: 국세청 제출용 양도·상속· 증여 평가 국내 최다 경력
+        - paragraph [ref=e92]: 하이테크 감정평가법인 주식회사
+        - paragraph [ref=e93]: "대표이사 : 김제프용진 ㅣ 사업자 등록번호 : 491-87-00809"
+        - paragraph [ref=e94]: 서울특별시 강남구 영동대로 511 무역센터 13층(삼성역)
+        - paragraph [ref=e95]:
+          - text: "이메일:"
+          - link "high_srrra@daum.net" [ref=e96] [cursor=pointer]:
+            - /url: mailto:high_srrra@daum.net
+  - alert [ref=e97]
